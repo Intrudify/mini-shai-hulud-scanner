@@ -1,20 +1,20 @@
 # Mini Shai-Hulud Scanner
 
-**Built by the [Intrudify](https://intrudify.com) team, free to use, no signup, no telemetry.**
+**Built by the [Intrudify](https://intrudify.com) team. Free to use, no signup, no telemetry.**
 
 NHS CC-4781 &nbsp;·&nbsp; CVE-2026-45321 (CVSS 9.6) &nbsp;·&nbsp; GHSA-g7cv-rxg3-hmpx
 
 ---
 
-If you've installed an npm or PyPI package in the last few weeks — especially anything from `@tanstack/*`, `@uipath/*`, `@mistralai/*`, `@cap-js/*`, or PyPI's `litellm`, `mistralai`, `guardrails-ai`, `lightning`, or `telnyx` — your machine may be compromised.
+If you've installed an npm or PyPI package in the last few weeks, especially anything from `@tanstack/*`, `@uipath/*`, `@mistralai/*`, `@cap-js/*`, or PyPI's `litellm`, `mistralai`, `guardrails-ai`, `lightning`, or `telnyx`, your machine may be compromised.
 
 The **Mini Shai-Hulud** worm steals credentials, plants persistence across macOS, Linux, and Windows, and can wipe your home directory if you handle cleanup in the wrong order.
 
-This scanner checks for all 19 known indicators. It only reads — it never writes, deletes, or sends anything off your machine.
+This scanner checks for all 19 known indicators. It only reads. It never writes, deletes, or sends anything off your machine.
 
 ---
 
-## Before you run — read this first
+## Before you run: read this first
 
 The worm plants a booby-trapped npm token. Revoking it from the infected machine triggers `rm -rf ~/`. Order matters.
 
@@ -27,9 +27,9 @@ The worm plants a booby-trapped npm token. Revoking it from the infected machine
 
 ---
 
-## How to run — 3 steps
+## How to run: 3 steps
 
-### Step 1 — pick your script
+### Step 1: pick your script
 
 | You're on... | Use this |
 |---|---|
@@ -37,7 +37,7 @@ The worm plants a booby-trapped npm token. Revoking it from the infected machine
 | Windows | `scan_cc4781.ps1` (or `scan_cc4781.py` with native Python) |
 | CI / Docker | `scan_cc4781.py` or `scan_cc4781.sh` |
 
-### Step 2 — run it from your project folder
+### Step 2: run it from your project folder
 
 ```bash
 # macOS / Linux
@@ -62,7 +62,7 @@ If PowerShell blocks the script:
 powershell -ExecutionPolicy Bypass -File .\scan_cc4781.ps1 -Deep
 ```
 
-### Step 3 — read the result
+### Step 3: read the result
 
 ```
 RESULT: 0 CRITICAL / 0 HIGH   →  you're clean
@@ -70,7 +70,7 @@ RESULT: X CRITICAL / Y HIGH   →  stop and follow the steps above before doing 
 ```
 
 `CRITICAL` = confirmed compromise indicator. Act immediately.
-`HIGH` = suspicious — investigate. Some HIGH findings are expected false positives (see below).
+`HIGH` = suspicious. Investigate. Some HIGH findings are expected false positives (see below).
 
 ---
 
@@ -91,7 +91,7 @@ Checking 149 npm packages (400+ malicious versions), 5 PyPI packages
 RESULT: 0 CRITICAL / 4 HIGH
 ```
 
-The `sysmon.py` and `execution.js` HIGH findings are **false positives** — the filenames match the worm's payload names but the SHA-256 hashes do not. CRITICAL only fires when the hash matches a confirmed-malicious payload.
+The `sysmon.py` and `execution.js` HIGH findings are **false positives**: the filenames match the worm's payload names but the SHA-256 hashes do not. CRITICAL only fires when the hash matches a confirmed-malicious payload.
 
 ---
 
@@ -142,7 +142,7 @@ JSON output format: `{ "host": "...", "findings": [{ "severity": "CRITICAL|HIGH"
 | SAP @cap-js | April 2026 | `@cap-js/db-service`, `@cap-js/sqlite`, `@cap-js/postgres`, `mbt` | `cloudmtabot` |
 | PyPI | Feb--April 2026 | `litellm`, `telnyx`, `lightning`, `mistralai`, `guardrails-ai` | various |
 
-**Important:** `npm audit signatures` passing does **not** mean you are safe. Mini Shai-Hulud is the first documented attack generating valid SLSA Build Level 3 provenance via a GitHub Actions OIDC pipeline hijack. Signatures verify build provenance — they do not verify that the build pipeline itself was clean.
+**Important:** `npm audit signatures` passing does **not** mean you are safe. Mini Shai-Hulud is the first documented attack generating valid SLSA Build Level 3 provenance via a GitHub Actions OIDC pipeline hijack. Signatures verify build provenance, not that the build pipeline itself was clean.
 
 ---
 
