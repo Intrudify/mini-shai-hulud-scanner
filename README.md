@@ -1,8 +1,30 @@
 # Mini Shai-Hulud Scanner
 
-**Built by the [Intrudify](https://intrudify.com) team. Free to use, no signup, no telemetry.**
+A free, offline scanner for the npm/PyPI supply chain worm that's currently chewing through major packages. Built by the [Intrudify](https://intrudify.com) team. No signup, no telemetry, runs entirely offline.
 
-NHS CC-4781 &nbsp;·&nbsp; CVE-2026-45321 (CVSS 9.6) &nbsp;·&nbsp; GHSA-g7cv-rxg3-hmpx
+NHS CC-4781 · CVE-2026-45321 (CVSS 9.6) · GHSA-g7cv-rxg3-hmpx
+
+---
+## What this is
+If you've run `npm install` or `pip install` in the past few weeks, this is for you.
+
+Especially if you've touched `@tanstack/*`, `@uipath/*`, `@mistralai/*`, `@cap-js/*`, or PyPI's `litellm`, `mistralai`, `guardrails-ai`, `lightning`, or `telnyx`. Those are the confirmed-poisoned namespaces. 149 packages total, 400+ malicious versions tracked so far.
+
+**Mini Shai-Hulud** is the worm doing the damage. It steals your npm and GitHub credentials, plants persistence across macOS, Linux, and Windows, and (the part most people miss) leaves behind a booby-trapped token. Revoke it from the infected machine and it triggers `rm -rf ~/`. Your home directory, gone. Cleanup order matters.
+
+This scanner checks all 19 known indicators of compromise across packages, lockfiles, persistence mechanisms, payload hashes, C2 traffic, git history, and CI environments. It only reads. It never writes, deletes, or phones home.
+
+Three scripts, one job: Python, Bash, PowerShell. Pick the one that fits your stack.
+
+---
+ 
+## Why we built this
+
+[Intrudify](https://intrudify.com) is Europe's first fully autonomous AI pentester for web applications. The pitch is simple: same output as a $30K human pentest team, delivered in hours instead of weeks, with an audit-ready report and step-by-step remediation guidance for NIS2, SOC2, and ISO27001. If you ship code and don't have a security team, that's the gap we close.
+
+This scanner is one piece of that. It's free because supply chain worms move faster than procurement cycles. A developer staring at a CVE feed at 11pm doesn't need a sales call. They need a tool that runs in 30 seconds and tells them whether they're cooked.
+
+For active compromises (CI/CD pipeline hijacks, GitHub Actions OIDC token abuse, npm/PyPI supply chain IR), reach out directly: **marc@intrudify.com**
 
 ---
 
