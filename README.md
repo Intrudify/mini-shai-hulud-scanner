@@ -1,6 +1,6 @@
 # Mini Shai-Hulud Scanner
 
-**Built by the [Intrudify](https://intrudify.com) team — free to use, no signup, no telemetry.**
+**Built by the [Intrudify](https://intrudify.com) team, free to use, no signup, no telemetry.**
 
 NHS CC-4781 &nbsp;·&nbsp; CVE-2026-45321 (CVSS 9.6) &nbsp;·&nbsp; GHSA-g7cv-rxg3-hmpx
 
