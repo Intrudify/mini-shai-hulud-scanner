@@ -2,7 +2,7 @@
 
 Detection scripts for the **Mini Shai-Hulud** npm/PyPI supply chain worm (NHS CC-4781, CVE-2026-45321, GHSA-g7cv-rxg3-hmpx, CVSS 9.6 Critical). Covers 170+ compromised npm packages across TanStack, UiPath, SAP @cap-js, and more, plus PyPI packages and all known persistence/C2 indicators.
 
-Three scripts — Python, Bash, PowerShell — covering the same 19 checks. Run whichever fits your environment.
+Three scripts: Python, Bash, PowerShell -> covering the same 19 checks. Run whichever fits your environment.
 
 ---
 
