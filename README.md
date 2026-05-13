@@ -11,7 +11,7 @@ Three scripts: Python, Bash, PowerShell -> covering the same 19 checks. Run whic
 **RANSOM TOKEN WARNING.**
 The worm plants an npm token named `IfYouRevokeThisTokenItWillWipeTheComputerOfTheOwner`. A background daemon (`gh-token-monitor`) polls `api.github.com/user` every 60 seconds. If the token is revoked, the daemon executes `rm -rf ~/` (Linux/macOS) or the Windows equivalent.
 
-**Remediation order — do not skip steps:**
+**Remediation order do not skip steps:**
 1. Network-isolate the machine first (pull the cable or disable the NIC)
 2. Take a forensic image
 3. Revoke the token from a **separate admin account** that is not on the compromised machine
